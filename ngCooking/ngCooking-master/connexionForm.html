@@ -1,0 +1,22 @@
+﻿<div ng-show="showForm" class="popin displayed" data-popin="connect_popin">
+    <div class="popin-content">
+        <div class="popin-scroll">
+            <p class="popin-title">Connexion</p>
+            <form novalidate action="#">
+                <p>
+                    <label for="co_user" class="fwb">Identifiant (email)</label>
+                    <input id="co_user" class="wide" type="text" ng-model="loginData.email" />
+                </p>
+                <p>
+                    <label for="co_pwd" class="fwb">Mot de passe</label>
+                    <input id="co_pwd" class="wide" type="text" ng-model="loginData.password" />
+                </p>
+                <p class="ac nm mt2">
+                    <button ng-click="log()" type="button" class="btn btn_big btn_color1"><span class="glyphicon glyphicon-ok"></span><span class="fwb uc">Valider</span></button>
+                </p>
+            </form>
+        </div>
+        <button ng-click="closeForm()" class="close popin-close"><span class="glyphicon glyphicon-remove"></span></button>
+    </div>
+    <div class="popin-backlayer"></div>
+</div>

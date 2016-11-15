@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html ng-app="ngCooking">
+    <head>
+        <meta charset="utf-8" />
+        <title>NgCooking</title>
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="author" content="c17 engineering" />
+        <meta name="copyright" content="c17 engineering" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="HandheldFriendly" content="true" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, minimal-ui" />
+        <meta name="apple-mobile-web-app-title" content="c17 engineering, recettes de cuisine à partager">
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <link rel="shortcut icon" href="img/favicon.png" />
+        <link rel="image_src" href="img/favicon.png" />
+        <link rel="icon" type="image/png" href="img/favicon.png" />
+        <meta name="robots" content="noindex, nofollow" />
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800' rel='stylesheet' type='text/css'>
+        <link href="css/reset.css" rel="stylesheet" type="text/css" />
+        <link href="css/style.css" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+        <script type="text/javascript" src="js/jquery.main.js"></script>
+        <script src="js/angular/angular.js"></script>
+        <script src="js/angular/angular-route.js"></script>
+        <script src="js/angular/angular-cookies.js"></script>
+        <script src="js/app.js"></script>
+        <script src="js/Services/jsonService.js"></script>
+        <script src="js/Services/connexionService.js"></script>
+        <script src="js/angular/angular-sanitize.js"></script>
+        <script src="js/Controllers/MainController.js"></script>
+        <script src="js/Controllers/HomeController.js"></script>
+        <script src="js/Controllers/communauteDetails.js"></script>
+        <script src="js/Controllers/communauteController.js"></script>
+        <script src="js/Controllers/ingredientsController.js"></script>
+        <script src="js/Controllers/recettesController.js"></script>
+        <script src="js/Controllers/recettesDetailsController.js"></script>
+        <script src="js/Controllers/recettesNewController.js"></script>
+    </head>
+    <body ng-controller="MainController">
+        <div ng-include="'header.html'"></div>
+        <div ng-view></div>
+        <div ng-include="'footer.html'"></div>
+    </body>
+</html>

@@ -1,0 +1,54 @@
+﻿<div id="wrapper">
+    <main id="main">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3" id="col-nav" ng-include="'logs.html'">
+                </div>
+                <div class="col-xs-12 col-sm-9">
+                    <div class="content" id="content_users">
+                        <h1 class="page-title">La communauté</h1>
+
+                        <section class="section">
+                            <h2 class="title">~ Les meilleures cuistots ~</h2>
+                            <div class="sort">
+                                <p>
+                                    <span class="span-label">Trier par :</span>
+                                    <select name="" id="" ng-model="sortOrder">
+                                        <option value="+firstname">Ordre alphabétique (A->Z)</option>
+                                        <option value="-firstname">Ordre alphabétique (Z->A)</option>
+                                        <option value="-level">Les mieux notés d'abord</option>
+                                        <option value="+level">Les moins bien notés d'abord</option>
+                                        <option value="+nbRecipes">Les plus productifs d'abord</option>
+                                        <option value="-nbRecipes">Les moins productifs d'abord</option>
+                                    </select>
+                                </p>
+                            </div>
+                            <div class="users row">
+                                <div class="col-xs-6 col-sm-3 user" ng-repeat="user in users| orderBy:sortOrder | limitTo: communaute.userLimit ">
+                                    <a href="#/profile/{{user.firstname}}/{{user.surname}}">
+                                        <img ng-src="{{user.picture}}" alt="{{user.firstname}} {{user.surname}}">
+                                        <div class="text">
+                                            <p class="name">{{user.firstname}} {{user.surname}}</p>
+                                            <p class="level">
+                                                <span class="stars">
+                                                    <span class="glyphicon glyphicon-star" ng-repeat="m in toArray(user.level) track by $index"></span>
+                                                </span>
+                                                <span class="status">{{communaute.status[user.level - 1]}}</span>
+                                            </p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="row showmore">
+                                <div class="col-xs-12">
+                                    <button ng-click="incrementUser()" type="button" class="btn btn_color1"><span class="glyphicon glyphicon-chevron-down"></span>Afficher d'avantage</button>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+<div ng-include="'connexionForm.html'"></div>

@@ -1,0 +1,129 @@
+﻿<div id="wrapper">
+	<main id="main">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-3" id="col-nav" ng-include="'logs.html'">
+				</div>
+				<div class="col-xs-12 col-sm-9">
+					<div class="content" id="content_recettes_details">
+
+						<section class="section">
+							<div class="row">
+								<div class="col-xs-4">
+									<img class="recette_img" ng-src="{{recettesDetails.recipe.picture}}" alt="Le tajine de ta maman">
+								</div>
+								<div class="col-xs-8">
+									<h1 class="rec_name">{{recettesDetails.recipe.name}}</h1>
+									<p class="rec_note">
+										<span class="stars">
+											<span class="star glyphicon glyphicon-heart" ng-repeat="i in toArray(getMark(recettesDetails.recipe)) track by $index"></span>
+										</span>
+										<span class="notes">| {{getMark(recettesDetails.recipe)}}/5 - {{recettesDetails.recipe.comments.length}} votes</span>
+									</p>
+									<div class="ingredients_list">
+										<p class="list-title">Ingrédients</p>
+										<ul class="list">
+											<li class="item" ng-repeat="ingredient in recettesDetails.ingredients track by $index" >
+												<img class="item-img" ng-src="img/ingredients/{{ingredient.picture}}" alt="{{ingredient.name}}">
+												<p class="item-name" title="{{ingredient.name}}">{{ingredient.name}}</p>
+											</li>
+										</ul>
+									</div>
+									<p class="rec_cal">Valeur calorique <span class="for">(100g)</span> : <span class="val">{{recettesDetails.recipe.calories}} kcal</span></p>
+								</div>
+							</div>
+						</section>
+
+						<section class="section">
+							<div class="row">
+								<div class="col-xs-12">
+									<h2 class="overline-title"><span class="text">Préparation</span></h2>
+								</div>
+								<div class="col-xs-12">
+                                    <ng-bind-html ng-bind-html="recettesDetails.recipe.preparation">
+                                    </ng-bind-html>
+								</div>
+							</div>
+						</section>
+
+						<section class="section" ng-show="showConnect">
+							<div class="row">
+								<div class="col-xs-12">
+									<h2 class="overline-title"><span class="text">Commentaires</span></h2>
+								</div>
+								<div class="col-xs-12 col-sm-6">
+									<div class="panel">
+										<div class="filters">
+											<h3 class="panel_title">Donnez-nous votre avis !</h3>
+											<form ng-submit="recettesDetails.setCommentaires()">
+												<div class="filter">
+													<p><label for="">Notez cette recette</label></p>
+													<p>
+														<select ng-model="recettesDetails.com.mark" name="" id="" value="3">
+															<option value="5">5</option>
+															<option value="4">4</option>
+															<option value="3">3</option>
+															<option value="2">2</option>
+															<option value="1">1</option>
+														</select>
+													</p>
+												</div>
+												<div class="filter">
+													<p><label for="">Le titre de votre commentaire</label></p>
+													<p><input required ng-model="recettesDetails.com.title" type="text" placeholder="ex: Amazingue !"></p>
+												</div>
+												<div class="filter">
+													<p><label for="">Votre commentaire</label></p>
+													<textarea required ng-model="recettesDetails.com.comment" name="" id="" class="wide" placeholder="ex: Franchement cette NgRecette, c’est de la bombe. Le genre de saveurs qui t’éveillent les papilles, t’as vu ! Woula, j’ai kiffé" required></textarea>
+												</div>
+												<div class="ar">
+													<input type="submit" class="btn btn_color1" value="Poster !">
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+								<div class="col-xs-12 col-sm-6">
+									<ul class="comments">
+										<li class="comment" ng-repeat="com in recettesDetails.recipe.comments |limitTo:recettesDetails.limitCom">
+											<p class="name">{{com.title}}<span class="note">{{com.mark}}/5</span></p>
+											<p class="by">par <a href="#/profile/{{recettesDetails.getName(com.userId).firstname}}/{{recettesDetails.getName(com.userId).surname}}">
+                                                {{recettesDetails.getName(com.userId).firstname}} {{recettesDetails.getName(com.userId).surname}}</a></p>
+											<p class="text">{{com.comment}}</p>
+										</li>
+									</ul>
+									<div class="row showmore">
+										<div class="col-xs-12">
+											<button ng-click="recettesDetails.moreComs()" type="button" class="btn btn_grey"><span class="glyphicon glyphicon-chevron-down"></span>Afficher d'avantage</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</section>
+
+						<section class="section">
+							<h2 class="title">~ Vous aimerez aussi... ~</h2>
+							<div class="recettes row">
+                                <div ng-repeat="recipe in recipes | limitTo:4" class="col-xs-6 col-sm-3 recette">
+                                    <a ng-href="main.html#/recettes/{{recipe.name}}">
+                                        <img ng-src="{{recipe.picture}}" alt="Le tajine de ta maman">
+                                        <div class="top" title="note : {{recipe.mark}}/5">
+                                            <span class="note">
+                                                <span class="glyphicon glyphicon-heart" ng-repeat="m in toArray(recipe.mark) track by $index"></span>
+                                            </span>
+                                        </div>
+                                        <div class="bot">
+                                            <p class="name">{{recipe.name}}</p>
+                                        </div>
+                                    </a>
+                                </div>
+							</div>
+						</section>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+</div>
+<div ng-include="'connexionForm.html'"></div>

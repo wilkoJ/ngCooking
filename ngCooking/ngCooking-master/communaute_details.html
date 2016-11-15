@@ -1,0 +1,70 @@
+﻿<div id="wrapper">
+    <main id="main">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3" id="col-nav" ng-include="'logs.html'">
+                </div>
+                <div class="col-xs-12 col-sm-9">
+                    <div class="content" id="content_communaute_details">
+
+                        <section class="section details">
+                            <div class="row">
+                                <div class="col-vxs-12 col-xs-6 col-sm-5">
+                                    <div class="avatar-wrap">
+                                        <img class="avatar" ng-src="{{communauteDetails.user.picture}}" alt="{{communauteDetails.user.firstname}} {{communauteDetails.user.surname}}">
+                                    </div>
+                                </div>
+                                <div class="col-vxs-12 col-xs-6 col-sm-7">
+                                    <div class="infos">
+                                        <h1 class="name">{{communauteDetails.user.firstname}} {{communauteDetails.user.surname}}</h1>
+                                        <p class="level">
+                                            <span class="stars">
+                                                <span class="glyphicon glyphicon-star" ng-repeat="m in toArray(communauteDetails.user.level) track by $index"></span>
+                                            </span>
+                                            <span class="status">{{communauteDetails.status}}</span>
+                                        </p>
+                                        <p class="city"><span class="fwb">Ville : </span>{{communauteDetails.user.city}}</p>
+                                        <p class="age"><span class="fwb">Age : </span>{{communauteDetails.age}} ans</p>
+                                        <p class="shared"><span class="fwb">{{communauteDetails.user.firstname}}</span> a partagé <span class="nb">{{communauteDetails.nbRecipes}} recettes</span></p>
+                                        <p class="bio"><span class="fwb">BIO : </span>{{communauteDetails.user.bio}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Afficher le bloc ci-dessous uniquement si lutilisateur connecté se rend sur sa propre page -->
+                        <section ng-show="showConnect" class="section newrecette">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <p class="c">Vous en avez sous la toque ?!</p>
+                                    <p class="b">
+                                        <a href="main.html#/recettes_new" class="btn btn_color1"><span class="glyphicon glyphicon-plus-sign"></span><span>Créez une nouvelle recette</span></a>
+                                    </p>
+                                </div>
+                            </div>
+                        </section>
+                        <section class="section">
+                            <h2 class="title">~ Les recettes de {{communauteDetails.user.firstname}} ~</h2>
+                            <div class="recettes row">
+                                <div ng-repeat="recipe in communauteDetails.recipes" class="col-xs-6 col-sm-3 recette">
+                                    <a href="recettes_details.html">
+                                        <img ng-src="{{recipe.picture}}" alt="Le tajine de ta maman">
+                                        <div class="top" title="note : {{recipe.mark}}/5">
+                                            <span class="note">
+                                                <span class="glyphicon glyphicon-heart"  ng-repeat="m in toArray(recipe.mark) track by $index"></span>
+                                            </span>
+                                        </div>
+                                        <div class="bot">
+                                            <p class="name">{{recipe.name}}</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+<div ng-include="'connexionForm.html'"></div>

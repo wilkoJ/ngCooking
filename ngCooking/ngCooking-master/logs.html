@@ -1,0 +1,24 @@
+﻿ <button type="button" id="mobile-close-btn">
+        <i class="glyphicon glyphicon-remove"></i>
+    </button>
+    <nav id="nav">
+        <ul class="menu">
+            <li class="page_hom active">
+                <a href="main.html#/home">Accueil</a>
+            </li>
+            <li class="page_rec">
+                <a href="main.html#/recettes/">Recettes</a>
+            </li>
+            <li class="page_ing">
+                <a href="main.html#/ingredients">Ingredients</a>
+            </li>
+            <li class="page_com">
+                <a ng-href="main.html#/communaute">Communauté</a>
+            </li>
+        </ul>
+        <div class="account-area">
+            <button ng-click="connexion()" ng-show="!showConnect" type="button" class="button connect" data-popin-open="connect_popin"><span class="icon"></span>Connexion</button>
+            <a ng-show="showConnect" ng-href="main.html#/profile/{{user.firstname}}/{{user.surname}}" class="button account"><span class="icon"></span>Mon profil</a>
+            <button ng-click="disconnection()" ng-show="showConnect" type="button" class="button deconnect"><span class="glyphicon glyphicon-off"></span>Deconnexion</button>
+        </div>
+    </nav>
