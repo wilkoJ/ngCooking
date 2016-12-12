@@ -1,7 +1,6 @@
 ﻿(function () {
     var myApp = angular.module('ngCooking');
     var MainController = function ($scope, $location, $routeParams, json, connexion) {
-
         var setRecipes = function (data) {
             $scope.recipes = data;
         };
@@ -71,10 +70,14 @@
         else
             $scope.showConnect = true;
         $scope.showForm = false;
+
         json.getRecipes().then(setRecipes, $scope.onError);
         json.getUsers().then(setUsers, $scope.onError);
         json.getIngredients().then(setIngredients, $scope.onError);
+        json.getRecipesApi().then(function (data) { console.log(data) }, $scope.onError);
         json.getCategories().then(setCategories, $scope.onError);
+
+        //json.postComment({ "recipeId": 1, "userId": 1, "title": "Good one", "comment": "this is what we need", "mark": 3 }).then(function (data) { console.log(data), $scope.onError });
         $scope.loginData = { email: "", password: "" };
         $scope.sortOrder = '+firstname';
     };

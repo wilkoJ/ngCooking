@@ -8,8 +8,10 @@
         $scope.recettesDetails.limitCom = 1;
         var setRecettesDetails = function () {
             for (var i = 0; i < $scope.recipes.length; ++i) {
-                if ($scope.recipes[i].name == $routeParams.recette)
+                if ($scope.recipes[i].name == $routeParams.recette) {
                     $scope.recettesDetails.recipe = $scope.recipes[i];
+                    $scope.recettesDetails.recipe.id = i;
+                }
             }
             for (var i = 0; i < $scope.recettesDetails.recipe.ingredients.length; ++i) {
                 console.log($scope.recettesDetails.recipe.ingredients[i])
@@ -29,13 +31,13 @@
             return "";
         };
         $scope.recettesDetails.setCommentaires = function () {
-            $scope.recettesDetails.com.userId = 1;
             for (var i = 0; i < $scope.recipes.length; ++i) {
                 if ($scope.recipes[i].name == $scope.recettesDetails.recipe.name) {
-                    $scope.recipes[i].comments.push($scope.recettesDetails.com);
+                    json.postComment({ "recipeId": $scope.recettesDetails.recipe.id, "userId": $scope.user.id, "title": $scope.recettesDetails.com.title, "comment": $scope.recettesDetails.com.comment, "mark": $scope.recettesDetails.com.mark });
+                    //$scope.recipes[i].comments.push($scope.recettesDetails.com);
                 }
             }
-            json.setRecettes(JSON.stringify($scope.recipes));
+            //json.setRecettes(JSON.stringify($scope.recipes));
         };
 
         $scope.recettesDetails.moreComs = function () {
